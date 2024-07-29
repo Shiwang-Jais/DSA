@@ -1,3 +1,5 @@
+from typing import List
+
 class ListNode:
     def __init__(self, key):
         self.key = key
@@ -5,7 +7,7 @@ class ListNode:
         
 class HashSet():
     def __init__(self):
-        self.set = [None for n in range(10**5)]
+        self.set = [None for _ in range(10**5)]
         
     def add(self, key : int) -> None:
         curr = self.set[key % len(self.set)]
@@ -22,7 +24,6 @@ class HashSet():
             curr = curr.next
             
         curr.next = ListNode(key)
-        return
     
     def get(self, key : int) -> bool :
         curr = self.set[key % len(self.set)]
@@ -38,12 +39,12 @@ class HashSet():
         
 
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        hash = HashSet()
+    def contains_duplicate(self, nums: List[int]) -> bool:
+        duplicate = HashSet()
         for n in nums:
-            if hash.get(n):
+            if duplicate.get(n):
                 return True
             else:
-                hash.add(n)
+                duplicate.add(n)
             
         return False
